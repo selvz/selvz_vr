@@ -11,7 +11,7 @@
 			<column name="email" type="VARCHAR(255)" />
 			<column name="password" type="VARCHAR(32)" />
 			<column name="role" type="VARCHAR(32)" />
-			<column name="first_scenario" type="boolean">
+			<column name="first_access" type="boolean">
 				<constraints nullable="false" />
 			</column>
 			<column name="id_scenario" type="INT" />
@@ -20,8 +20,8 @@
 
 
 	<changeSet author="jonas.rotta" id="20161215-2">
-		<addDefaultValue columnName="first_scenario"
-			defaultValueBoolean="false" tableName="user" />
+		<addDefaultValue columnName="first_access"
+			defaultValueBoolean="true" tableName="user" />
 	</changeSet>
 
 	<changeSet author="jonas.rotta" id="20161215-3">

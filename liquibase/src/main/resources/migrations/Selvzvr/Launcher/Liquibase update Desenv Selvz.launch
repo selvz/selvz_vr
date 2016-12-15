@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-<listEntry value="/Selvz_Liquibase"/>
+<listEntry value="/selvz-liquibase"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="4"/>
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="liquibase.integration.commandline.Main"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="--driver=com.mysql.jdbc.Driver&#13;&#10;--changeLogFile=src/main/resources/migrations/Selvzvr/master-changeLogDesenv-Selvzvr.xml&#13;&#10;     --url=&quot;jdbc:mysql://localhost:3306/selvzvr&quot;&#13;&#10;     --username=root&#13;&#10;     --password=intelecto&#13;&#10;     --logLevel=INFO&#13;&#10;    update"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="Selvz_Liquibase"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="selvz-liquibase"/>
 </launchConfiguration>

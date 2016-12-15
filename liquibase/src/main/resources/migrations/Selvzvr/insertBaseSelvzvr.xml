@@ -8,6 +8,7 @@
 			<column name="email" value="mauricio.desouza@digilab.com.br" />
 			<column name="password" value="password1" />
 			<column name="role" value="ROLE_ADMIN" />
+			<column name="first_access" valueBoolean="false" />
 		</insert>
 	</changeSet>
 
@@ -16,6 +17,7 @@
 			<column name="email" value="edu@selvz.com" />
 			<column name="password" value="password2" />
 			<column name="role" value="ROLE_ADMIN" />
+			<column name="first_access" valueBoolean="false" />
 		</insert>
 	</changeSet>
 
