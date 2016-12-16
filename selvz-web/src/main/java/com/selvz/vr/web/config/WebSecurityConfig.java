@@ -33,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authenticationProvider(authenticationProvider).csrf().disable().exceptionHandling().and()
-				.authorizeRequests().antMatchers("/index.html", "resources/**").permitAll().antMatchers("/config.html")
+				.authorizeRequests().antMatchers("/index.html", "resources/**", "/header", "/footer").permitAll().antMatchers("/config.html")
 				.hasAnyRole("USER").antMatchers("/admin.html").hasAnyRole("ADMIN").antMatchers("/api/v1/**")
 				.authenticated().and().formLogin().permitAll().successHandler(authenticationSucessHandler).and()
 				.logout().invalidateHttpSession(true).deleteCookies("JSESSIONID", "selvz.user.email");

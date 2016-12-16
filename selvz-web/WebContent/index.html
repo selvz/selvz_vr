@@ -1,10 +1,70 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>selvz</title>
-  </head>
-  <body>
-  	Welcome to selvz
-  </body>
+<!--[if lt IE 7]>      <html lang="en" ng-app="selvz" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="selvz" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="selvz" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="selvz" class="no-js">
+<!--<![endif]-->
+<head>
+<title>Selvz</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<script src="resources/js/angular.min.js"></script>
+<script src="resources/js/angular-route.min.js"></script>
+<script src="resources/js/angular-resource.min.js"></script>
+<script src="resources/js/angular-cookies.min.js"></script>
+
+<script src="resources/js/selvz-scripts.js"></script>
+<script src="resources/js/selvz-login-controller.js"></script>
+
+<script src="resources/js/ui-bootstrap-tpls-2.0.1.min.js"></script>
+
+</head>
+<body ng-controller="LoginController">
+
+	<div ng-include="'header.html'"></div>
+	<br />
+	<div class="container">
+
+		<!-- #primeiraLinhaLogin -->
+		<form class="form-horizontal" name="formLogin" action="login"
+			method="post">
+			<div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span><input type="text" class="form-control" id="inputNome"
+					name="username" ng-model="username" placeholder="email">
+			</div>
+			<!-- .form-group -->
+			 <div class="input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span><input type="password" class="form-control" id="inputSenha"
+					name="password" ng-model="password" placeholder="password">
+			</div>
+			<!-- .form-group -->
+			<div class="input-group">
+				<button id="botaoLogin" type="submit" class="btn btn-primary">Login</button>
+			</div>
+			<!-- .form-group -->
+		</form>
+		<!-- .form-horizontal -->
+	</div>
+	<!-- .container -->
+	<br />
+	<div ng-include="'footer.html'"></div>
+
+</body>
 </html>
