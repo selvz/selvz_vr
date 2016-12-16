@@ -36,7 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests().antMatchers("/index.html", "resources/**").permitAll().antMatchers("/config.html")
 				.hasAnyRole("USER").antMatchers("/admin.html").hasAnyRole("ADMIN").antMatchers("/api/v1/**")
 				.authenticated().and().formLogin().permitAll().successHandler(authenticationSucessHandler).and()
-				.logout().invalidateHttpSession(true).deleteCookies("JSESSIONID");
+				.logout().invalidateHttpSession(true).deleteCookies("JSESSIONID", "selvz.user.email");
 	}
 
 	@Bean

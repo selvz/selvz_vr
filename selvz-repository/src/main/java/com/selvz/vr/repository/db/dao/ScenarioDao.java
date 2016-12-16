@@ -18,7 +18,10 @@ import com.selvz.vr.repository.db.pojo.Scenario;
 public class ScenarioDao extends DefaultDao {
 	
 	@Transactional(readOnly = true)
-	public Scenario getById(long id) {
+	public Scenario getById(Long id) {
+		if (id == null) {
+			return null;
+		}
 		return (Scenario) getSession().get(Scenario.class, id);
 	}
 
@@ -29,17 +32,22 @@ public class ScenarioDao extends DefaultDao {
 	}
 
 	@Transactional
-	public void save(Scenario e) {
-		getSession().persist(e);
+	public void save(Scenario s) {
+		getSession().persist(s);
 	}
 
 	@Transactional
-	public void update(Scenario e) {
-		getSession().update(e);
+	public void update(Scenario s) {
+		getSession().update(s);
 	}
 
 	@Transactional
-	public void delete(Scenario e) {
-		getSession().delete(e);
+	public void delete(Scenario s) {
+		getSession().delete(s);
+	}
+	
+	@Transactional
+	public void saveOrUpdate(Scenario s) {
+		getSession().saveOrUpdate(s);
 	}
 }

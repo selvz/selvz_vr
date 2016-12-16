@@ -16,6 +16,7 @@ public class SecurityUserDetails implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	private String username;
 	private String password;
+	private boolean firstAccess = true;
 	private List<SecurityRole> authorities;
 	private boolean accountNonExpired = true;
 	private boolean accountNonLocked = true;
@@ -38,6 +39,14 @@ public class SecurityUserDetails implements UserDetails {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public boolean isFirstAccess() {
+		return firstAccess;
+	}
+
+	public void setFirstAccess(boolean firstAccess) {
+		this.firstAccess = firstAccess;
 	}
 
 	@Override

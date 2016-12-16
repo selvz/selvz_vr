@@ -13,7 +13,7 @@ import com.selvz.vr.web.external.PosterExt;
  *
  */
 @Service
-public class PosterMapper implements WebMapper<Poster, PosterExt>{
+public class PosterWebMapper implements WebMapper<Poster, PosterExt>{
 
 	@Override
 	public PosterExt convertToExternal(Poster source) {

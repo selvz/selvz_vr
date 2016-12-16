@@ -13,7 +13,7 @@ import com.selvz.vr.web.external.ScenarioExt;
  *
  */
 @Service
-public class ScenarioMapper implements WebMapper<Scenario, ScenarioExt> {
+public class ScenarioWebMapper implements WebMapper<Scenario, ScenarioExt> {
 
 	@Override
 	public ScenarioExt convertToExternal(Scenario source) {

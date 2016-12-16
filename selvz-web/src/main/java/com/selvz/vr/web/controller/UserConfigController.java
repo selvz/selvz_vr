@@ -20,8 +20,8 @@ import com.selvz.vr.repository.db.pojo.Scenario;
 import com.selvz.vr.repository.db.pojo.User;
 import com.selvz.vr.web.external.PosterExt;
 import com.selvz.vr.web.external.UserConfigExt;
-import com.selvz.vr.web.mapper.PosterMapper;
-import com.selvz.vr.web.mapper.ScenarioMapper;
+import com.selvz.vr.web.mapper.PosterWebMapper;
+import com.selvz.vr.web.mapper.ScenarioWebMapper;
 
 /**
  * @author casam
@@ -35,10 +35,10 @@ public class UserConfigController {
 	private UserDao userDao;
 
 	@Autowired
-	private ScenarioMapper scenarioMapper;
+	private ScenarioWebMapper scenarioWebMapper;
 
 	@Autowired
-	private PosterMapper posterMapper;
+	private PosterWebMapper posterWebMapper;
 
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
@@ -59,10 +59,10 @@ public class UserConfigController {
 		configExt.email = source.getEmail();
 
 		Scenario scenario = source.getScenario();
-		configExt.scenario = scenarioMapper.convertToExternal(scenario);
+		configExt.scenario = scenarioWebMapper.convertToExternal(scenario);
 
 		for (Poster poster : source.getPosters()) {
-			PosterExt posterExt = posterMapper.convertToExternal(poster);
+			PosterExt posterExt = posterWebMapper.convertToExternal(poster);
 			configExt.posters.add(posterExt);
 		}
 

@@ -7,12 +7,12 @@ import java.io.IOException;
 import java.util.Collection;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
@@ -30,13 +30,19 @@ public class SecurityAuthenticationSucessHandler extends SimpleUrlAuthentication
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws ServletException, IOException {
-		UserDetails user = (UserDetails) authentication.getPrincipal();
+		SecurityUserDetails user = (SecurityUserDetails) authentication.getPrincipal();
 		Collection<? extends GrantedAuthority> roles = user.getAuthorities();
 		GrantedAuthority role = buildUserRole();
 		String contextPath = request.getContextPath();
 		String redirectAddress;
 		if (roles != null && roles.contains(role)) {
-			redirectAddress = contextPath + "/config.html";
+			Cookie cookieSpeakerAddress = new Cookie("selvz.user.email", user.getUsername());
+			response.addCookie(cookieSpeakerAddress);
+			if (user.isFirstAccess()) {
+				redirectAddress = contextPath + "/user.html";
+			} else {
+				redirectAddress = contextPath + "/config.html";
+			}
 		} else {
 			redirectAddress = contextPath + "/admin.html";
 		}

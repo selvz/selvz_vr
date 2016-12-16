@@ -23,6 +23,7 @@ public class SecurityWebMapper {
 		SecurityUserDetails user = new SecurityUserDetails();
 		user.setUsername(source.getEmail());
 		user.setPassword(source.getPassword());
+		user.setFirstAccess(source.getFirstAccess());
 		SecurityRole role = new SecurityRole();
 		role.setName(source.getRole());
 		List<SecurityRole> roles = new ArrayList<SecurityRole>();
