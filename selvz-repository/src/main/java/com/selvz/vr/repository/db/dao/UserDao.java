@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,6 +62,13 @@ public class UserDao extends DefaultDao {
 		User user = (User) criteria.setFetchMode("posters", FetchMode.JOIN).add(Restrictions.eq("id", id))
 				.uniqueResult();
 
+		return user;
+	}
+
+	@Transactional(readOnly = true)
+	public User getByEmail(String email) {
+		Criteria criteria = getSession().createCriteria(User.class);
+		User user = (User) criteria.add(Restrictions.like("email", email, MatchMode.EXACT)).uniqueResult();
 		return user;
 	}
 
