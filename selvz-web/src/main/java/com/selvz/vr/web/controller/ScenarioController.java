@@ -23,7 +23,6 @@ import com.selvz.vr.repository.db.dao.UserDao;
 import com.selvz.vr.repository.db.pojo.Scenario;
 import com.selvz.vr.repository.db.pojo.User;
 import com.selvz.vr.web.external.ScenarioExt;
-import com.selvz.vr.web.external.ScenariosExt;
 import com.selvz.vr.web.mapper.ScenarioWebMapper;
 import com.selvz.vr.web.security.SecurityUserDetails;
 
@@ -40,21 +39,23 @@ public class ScenarioController {
 
 	@Autowired
 	private UserDao userDao;
-	
+
 	@Autowired
 	private ScenarioWebMapper scenarioWebMapper;
 
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody ScenariosExt getScenarios() {
-		ScenariosExt scenariosExt = new ScenariosExt();
-		List<Scenario> scenarios = scenarioDao.findAll();
-		for (Scenario scenario : scenarios) {
-			ScenarioExt scenarioExt = scenarioWebMapper.convertToExternal(scenario);
-			scenariosExt.scenarios.add(scenarioExt);
+	public @ResponseBody ScenarioExt getScenarios() {
+		SecurityUserDetails currentUser = (SecurityUserDetails) SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal();
+		User user = userDao.getByEmail(currentUser.getUsername());
+		Scenario scenario = user.getScenario();
+		if (scenario == null) {
+			return new ScenarioExt();
 		}
+		ScenarioExt scenarioExt = scenarioWebMapper.convertToExternal(scenario);
 
-		return scenariosExt;
+		return scenarioExt;
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -65,10 +66,11 @@ public class ScenarioController {
 
 		return scenarioExt;
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
-	public @ResponseBody ScenarioExt createScenario(@RequestBody ScenarioExt newScenarioExt, HttpServletResponse response) {
+	public @ResponseBody ScenarioExt createScenario(@RequestBody ScenarioExt newScenarioExt,
+			HttpServletResponse response) {
 		Long id = newScenarioExt.id;
 		Scenario scenario = scenarioDao.getById(id);
 		if (scenario == null) {
@@ -102,11 +104,11 @@ public class ScenarioController {
 		Scenario scenario = scenarioDao.getById(id);
 		scenarioDao.delete(scenario);
 	}
-	
+
 	private Scenario updateFields(Scenario scenario, ScenarioExt newScenarioExt) {
 		scenario.setAddress(newScenarioExt.address);
 		scenario.setLabel(newScenarioExt.label);
-		
+
 		return scenario;
 	}
 
