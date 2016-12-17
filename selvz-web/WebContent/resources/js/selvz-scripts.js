@@ -8,12 +8,12 @@ app.factory('UserService', function($resource) {
 	});
 })
 
-app.factory('PostersService', function($resource) {
+app.factory('PosterService', function($resource) {
 	return $resource("api/v1/posters/:posterId", {posterId:'@id'}); 
 })
 
 app.factory('ScenarioService', function($resource) {
-	return $resource("api/v1/scenario/:scenarioId", {scenarioId:'@id'}); 
+	return $resource("api/v1/scenarios/:scenarioId", {scenarioId:'@id'}); 
 })
 
 app.config(['$locationProvider', function($locationProvider) {

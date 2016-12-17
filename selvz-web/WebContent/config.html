@@ -37,8 +37,78 @@
 <script src="resources/js/ui-bootstrap-tpls-2.0.1.min.js"></script>
 
 </head>
-<body ng-controller="ConfigController">
-	
+<body ng-controller="ConfigController" data-ng-init="loadConfigs()">
 
+	<div class="container">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Create new scenario</h3>
+			</div>
+			<div class="panel-body">
+				<div class="input-group">
+					<span class="input-group-addon"><i
+						class="glyphicon glyphicon-globe"></i></span><input type="text"
+						class="form-control" ng-model="scenarioAddress">
+				</div>
+				<div class="input-group">
+					<button id="botaoLogin" type="submit" class="btn btn-primary"
+						ng-click="submitCreateScenario()">Create</button>
+				</div>
+			</div>
+		</div>
+
+
+		<hr />
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Create new poster</h3>
+			</div>
+			<div class="panel-body">
+
+				<div class="input-group">
+					<span class="input-group-addon"><i
+						class="glyphicon glyphicon-tag"></i></span><input type="text"
+						class="form-control" ng-model="posterLabel">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon"><i
+						class="glyphicon glyphicon-globe"></i></span><input type="text"
+						class="form-control" ng-model="posterAddress">
+				</div>
+				<div class="input-group">
+					<button id="botaoLogin" type="submit" class="btn btn-primary"
+						ng-click="submitCreatePoster()">Create</button>
+				</div>
+			</div>
+		</div>
+		<hr />
+		<div ng-repeat="poster in posters track by $index">
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Poster id: {{poster.id}}</h3>
+				</div>
+				<div class="panel-body">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-tag"></i></span><input type="text"
+							class="form-control" value="{{poster.label}}" disabled>
+					</div>
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-globe"></i></span><input type="text"
+							class="form-control" value="{{poster.address}}" disabled>
+					</div>
+					<div class="input-group">
+						<button id="botaoLogin" type="submit" class="btn btn-danger"
+							ng-click="submitRemovePoster(poster.id)">Remove</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- .container -->
+	<br />
 </body>
 </html>
