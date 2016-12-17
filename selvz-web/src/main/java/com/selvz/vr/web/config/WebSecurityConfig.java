@@ -31,6 +31,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private SecurityAuthenticationSucessHandler authenticationSucessHandler;
+	
+	@Autowired
+	private SecurityLogoutSucessHandler logoutSuccessHandler;
 
 	@Autowired
 	private SecurityAuthenticationProvider authenticationProvider;
@@ -47,7 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/api/v1/users**", "/api/v1/scenarios**", "/api/v1/posters**").authenticated().and()
 				.formLogin().permitAll().successHandler(authenticationSucessHandler)
 				.failureHandler(authenticationFailureHandler).and().logout().invalidateHttpSession(true)
-				.deleteCookies("JSESSIONID", "selvz.user.email");
+				.deleteCookies("JSESSIONID", "selvz.user.email").logoutSuccessHandler(logoutSuccessHandler);
 	}
 
 	@Bean
