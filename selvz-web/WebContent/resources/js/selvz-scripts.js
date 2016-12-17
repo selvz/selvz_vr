@@ -8,6 +8,14 @@ app.factory('UserService', function($resource) {
 	});
 })
 
+app.factory('PostersService', function($resource) {
+	return $resource("api/v1/posters/:posterId", {posterId:'@id'}); 
+})
+
+app.factory('ScenarioService', function($resource) {
+	return $resource("api/v1/scenario/:scenarioId", {scenarioId:'@id'}); 
+})
+
 app.config(['$locationProvider', function($locationProvider) {
     $locationProvider.html5Mode({
     	  enabled: true,
