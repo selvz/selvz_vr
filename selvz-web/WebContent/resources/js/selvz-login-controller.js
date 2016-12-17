@@ -1,4 +1,4 @@
-app.controller('LoginController', function($scope, $cookies, $filter, $location, $window, UserService){
+app.controller('LoginController', function($scope, $cookies, $filter, $location, $window, $http, UserService){
 	
 	$scope.loadUser = function() {
 		var username = $cookies.get('selvz.user.email');

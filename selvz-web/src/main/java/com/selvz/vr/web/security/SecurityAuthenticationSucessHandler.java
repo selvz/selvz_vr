@@ -17,12 +17,14 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 /**
  * @author casam
  *
  */
+@Service("authenticationSucessHandler")
 public class SecurityAuthenticationSucessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
 	private RequestCache requestCache = new HttpSessionRequestCache();
@@ -47,7 +49,7 @@ public class SecurityAuthenticationSucessHandler extends SimpleUrlAuthentication
 			redirectAddress = contextPath + "/admin.html";
 		}
 
-		System.out.println(redirectAddress);
+		//System.out.println(redirectAddress);
 		response.sendRedirect(redirectAddress);
 		SavedRequest savedRequest = requestCache.getRequest(request, response);
 
