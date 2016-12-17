@@ -47,11 +47,16 @@ public class PosterController {
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody PostersExt getPosters() {
+		SecurityUserDetails currentUser = (SecurityUserDetails) SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal();
+		String email = currentUser.getUsername();
 		PostersExt postersExt = new PostersExt();
 		List<Poster> posters = posterDao.findAll();
 		for (Poster poster : posters) {
-			PosterExt posterExt = posterWebMapper.convertToExternal(poster);
-			postersExt.posters.add(posterExt);
+			if (poster.getUser().getEmail().equals(email)) {
+				PosterExt posterExt = posterWebMapper.convertToExternal(poster);
+				postersExt.posters.add(posterExt);
+			}
 		}
 
 		return postersExt;
