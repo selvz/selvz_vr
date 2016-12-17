@@ -59,7 +59,9 @@ public class UserConfigController {
 		configExt.email = source.getEmail();
 
 		Scenario scenario = source.getScenario();
-		configExt.scenario = scenarioWebMapper.convertToExternal(scenario);
+		if (scenario != null) {
+			configExt.scenario = scenarioWebMapper.convertToExternal(scenario);
+		}
 
 		for (Poster poster : source.getPosters()) {
 			PosterExt posterExt = posterWebMapper.convertToExternal(poster);

@@ -1,1 +1,97 @@
-admin
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="selvz" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="selvz" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="selvz" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="selvz" class="no-js">
+<!--<![endif]-->
+<head>
+<title>Selvz</title>
+<base href="/selvz-web/">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<script src="resources/js/angular.min.js"></script>
+<script src="resources/js/angular-route.min.js"></script>
+<script src="resources/js/angular-resource.min.js"></script>
+<script src="resources/js/angular-cookies.min.js"></script>
+
+<script src="resources/js/selvz-scripts.js"></script>
+<script src="resources/js/selvz-admin-controller.js"></script>
+
+<script src="resources/js/ui-bootstrap-tpls-2.0.1.min.js"></script>
+
+</head>
+<body ng-controller="AdminController">
+
+	<div ng-include="'header.html'" data-ng-init="loadUsers()"></div>
+	<br />
+	<div class="container">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Create new user</h3>
+			</div>
+			<div class="panel-body">
+				<div class="input-group">
+					<span class="input-group-addon"><i
+						class="glyphicon glyphicon-envelope"></i></span><input type="text"
+						class="form-control" ng-model="email">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon"><i
+						class="glyphicon glyphicon-lock"></i></span><input type="text"
+						class="form-control" ng-model="password">
+				</div>
+				<div class="input-group">
+					<button id="botaoLogin" type="submit" class="btn btn-primary"
+						ng-click="submitCreateUser()">Create</button>
+				</div>
+			</div>
+		</div>
+		<hr />
+		<div ng-repeat="user in users track by $index">
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">User id: {{user.id}}</h3>
+				</div>
+				<div class="panel-body">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-envelope"></i></span><input type="text"
+							class="form-control" value="{{user.email}}" disabled>
+					</div>
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-lock"></i></span><input type="text"
+							class="form-control" value="{{user.password}}" disabled>
+					</div>
+					<div class="input-group">
+						<button id="botaoLogin" type="submit" class="btn btn-danger"
+							ng-click="submitRemoveUser(user.id)">Remove</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- .container -->
+	<br />
+	<div ng-include="'footer.html'"></div>
+
+</body>
+</html>

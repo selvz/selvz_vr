@@ -33,8 +33,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authenticationProvider(authenticationProvider).csrf().disable().exceptionHandling().and()
-				.authorizeRequests().antMatchers("/index.html", "resources/**", "/header", "/footer").permitAll().antMatchers("/config.html")
-				.hasAnyRole("USER").antMatchers("/admin.html").hasAnyRole("ADMIN").antMatchers("/api/v1/**")
+				.authorizeRequests().antMatchers("/index.html", "resources/**", "/header", "/footer", "/api/v1/configs**").permitAll().antMatchers("/config.html")
+				.hasAnyRole("USER").antMatchers("/admin.html").hasAnyRole("ADMIN").antMatchers("/api/v1/users**","/api/v1/scenarios**","/api/v1/posters**")
 				.authenticated().and().formLogin().permitAll().successHandler(authenticationSucessHandler).and()
 				.logout().invalidateHttpSession(true).deleteCookies("JSESSIONID", "selvz.user.email");
 	}
