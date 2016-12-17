@@ -50,9 +50,10 @@ public class PosterController {
 		SecurityUserDetails currentUser = (SecurityUserDetails) SecurityContextHolder.getContext().getAuthentication()
 				.getPrincipal();
 		String email = currentUser.getUsername();
+		User userTemp = userDao.getByEmail(email);
 		PostersExt postersExt = new PostersExt();
-		List<Poster> posters = posterDao.findAll();
-		for (Poster poster : posters) {
+		User user = userDao.fetchPostersByUserId(userTemp.getId());
+		for (Poster poster : user.getPosters()) {
 			if (poster.getUser().getEmail().equals(email)) {
 				PosterExt posterExt = posterWebMapper.convertToExternal(poster);
 				postersExt.posters.add(posterExt);

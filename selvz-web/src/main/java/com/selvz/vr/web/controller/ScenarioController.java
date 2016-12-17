@@ -48,7 +48,8 @@ public class ScenarioController {
 	public @ResponseBody ScenarioExt getScenarios() {
 		SecurityUserDetails currentUser = (SecurityUserDetails) SecurityContextHolder.getContext().getAuthentication()
 				.getPrincipal();
-		User user = userDao.getByEmail(currentUser.getUsername());
+		User userTemp = userDao.getByEmail(currentUser.getUsername());
+		User user = userDao.fetchScenarioByUserId(userTemp.getId());
 		Scenario scenario = user.getScenario();
 		if (scenario == null) {
 			return new ScenarioExt();
