@@ -25,6 +25,7 @@ app.controller('ConfigController', function($scope, $filter, $window,
 			console.log(result);
 			$scope.scenarioId = result.id;
 		});
+		alert("The scenario has been created successfully!");
 	};
 
 	$scope.submitCreatePoster = function() {
