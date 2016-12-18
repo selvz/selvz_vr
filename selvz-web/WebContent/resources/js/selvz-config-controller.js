@@ -12,7 +12,6 @@ app.controller('ConfigController', function($scope, $filter, $window,
 	};
 	
 	$scope.submitCreateScenario = function() {
-		console.log("ok entrou");
 		var scenarioJson = {};
 		if ($scope.scenarioId != 0) {
 			scenarioJson.id = $scope.scenarioId;
@@ -22,14 +21,12 @@ app.controller('ConfigController', function($scope, $filter, $window,
 		var json = $filter('json')(scenarioJson);
 		var saveScenario = ScenarioService.save(json);
 		saveScenario.$promise.then(function(result) {
-			console.log(result);
 			$scope.scenarioId = result.id;
 		});
 		alert("The scenario has been created successfully!");
 	};
 
 	$scope.submitCreatePoster = function() {
-		console.log("ok entrou");
 		var posterJson = {};
 		posterJson.label = $scope.posterLabel;
 		posterJson.address = $scope.posterAddress;

@@ -30,10 +30,8 @@ app.controller('AdminController', function($scope, $filter, $window, UserService
 		userJson.email = $scope.email;
 		userJson.password = $scope.password;
 		var json = $filter('json')(userJson);
-		console.log(json);
 		var saveUser = UserService.save(json);
 		saveUser.$promise.then(function(result){
-			console.log("success");
 			$scope.email = "";
 			$scope.password = "";
 			$window.location.reload();
