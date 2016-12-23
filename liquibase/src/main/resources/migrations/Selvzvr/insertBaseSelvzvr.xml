@@ -20,5 +20,5 @@
 			<column name="first_access" valueBoolean="false" />
 		</insert>
 	</changeSet>
-
+	
 </databaseChangeLog>

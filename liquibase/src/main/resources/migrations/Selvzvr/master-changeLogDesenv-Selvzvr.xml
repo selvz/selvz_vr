@@ -9,5 +9,6 @@
 
 	<include file="migrations/Selvzvr/changeLogBase.xml" />
 	<include file="migrations/Selvzvr/insertBaseSelvzvr.xml" />
+	<include file="migrations/Selvzvr/updates/update-1.xml" />
 	
 </databaseChangeLog>
