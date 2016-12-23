@@ -21,6 +21,8 @@ public class ScenarioWebMapper implements WebMapper<Scenario, ScenarioExt> {
 		scenarioExt.id = source.getId();
 		scenarioExt.address = source.getAddress();
 		scenarioExt.label = source.getLabel();
+		scenarioExt.border = source.getBorder();
+		scenarioExt.slides = source.getSlides();
 		
 		return scenarioExt;
 	}
@@ -31,7 +33,8 @@ public class ScenarioWebMapper implements WebMapper<Scenario, ScenarioExt> {
 		scenario.setId(source.id);
 		scenario.setAddress(source.address);
 		scenario.setLabel(source.label);
-
+		scenario.setBorder(source.border);
+		scenario.setSlides(source.slides);
 		return scenario;
 	}
 

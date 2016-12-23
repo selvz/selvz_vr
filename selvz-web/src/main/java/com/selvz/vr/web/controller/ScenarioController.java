@@ -109,6 +109,8 @@ public class ScenarioController {
 	private Scenario updateFields(Scenario scenario, ScenarioExt newScenarioExt) {
 		scenario.setAddress(newScenarioExt.address);
 		scenario.setLabel(newScenarioExt.label);
+		scenario.setBorder(newScenarioExt.border);
+		scenario.setSlides(newScenarioExt.slides);
 
 		return scenario;
 	}

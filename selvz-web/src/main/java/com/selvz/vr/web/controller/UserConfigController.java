@@ -18,7 +18,9 @@ import com.selvz.vr.repository.db.dao.UserDao;
 import com.selvz.vr.repository.db.pojo.Poster;
 import com.selvz.vr.repository.db.pojo.Scenario;
 import com.selvz.vr.repository.db.pojo.User;
+import com.selvz.vr.web.external.MenuExt;
 import com.selvz.vr.web.external.PosterExt;
+import com.selvz.vr.web.external.SelvzExt;
 import com.selvz.vr.web.external.UserConfigExt;
 import com.selvz.vr.web.mapper.PosterWebMapper;
 import com.selvz.vr.web.mapper.ScenarioWebMapper;
@@ -55,19 +57,28 @@ public class UserConfigController {
 
 	public UserConfigExt convertToExternal(User source) {
 		UserConfigExt configExt = new UserConfigExt();
+		SelvzExt selvzExt = new SelvzExt();
 
-		configExt.email = source.getEmail();
+		selvzExt.email = source.getEmail();
 
 		Scenario scenario = source.getScenario();
 		if (scenario != null) {
-			configExt.scenario = scenarioWebMapper.convertToExternal(scenario);
+			selvzExt.env = scenarioWebMapper.convertToExternal(scenario).address;
 		}
+		selvzExt.sound = "";
 
+		MenuExt menuExt = new MenuExt();
 		for (Poster poster : source.getPosters()) {
 			PosterExt posterExt = posterWebMapper.convertToExternal(poster);
-			configExt.posters.add(posterExt);
+			menuExt.item.add(posterExt);
 		}
+		menuExt.border = scenario.getBorder();
+		menuExt.slides = scenario.getSlides();
 
+		selvzExt.menu = menuExt;
+		
+		configExt.selvz = selvzExt;
+		
 		return configExt;
 	}
 }

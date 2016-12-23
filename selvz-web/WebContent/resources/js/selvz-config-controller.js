@@ -8,6 +8,8 @@ app.controller('ConfigController', function($scope, $filter, $window,
 		var scenario = ScenarioService.get();
 		scenario.$promise.then(function(result) {
 			$scope.scenarioAddress = result.address;
+			$scope.scenarioBorder = result.border;
+			$scope.scenarioSlides = result.slides;
 		});
 	};
 	
@@ -18,6 +20,8 @@ app.controller('ConfigController', function($scope, $filter, $window,
 		}
 		scenarioJson.label = "";
 		scenarioJson.address = $scope.scenarioAddress;
+		scenarioJson.border = $scope.scenarioBorder;
+		scenarioJson.slides = $scope.scenarioSlides;
 		var json = $filter('json')(scenarioJson);
 		var saveScenario = ScenarioService.save(json);
 		saveScenario.$promise.then(function(result) {
@@ -28,14 +32,16 @@ app.controller('ConfigController', function($scope, $filter, $window,
 
 	$scope.submitCreatePoster = function() {
 		var posterJson = {};
-		posterJson.label = $scope.posterLabel;
-		posterJson.address = $scope.posterAddress;
+		posterJson.format = $scope.posterLabel;
+		posterJson.file = $scope.posterAddress;
+		posterJson.bitmap = $scope.posterBitmap;
 		var json = $filter('json')(posterJson);
 		var savePoster = PosterService.save(json);
 		savePoster.$promise.then(function(result) {
 			refreshPosters();
 			$scope.posterLabel = "";
 			$scope.posterAddress = "";
+			$scope.posterBitmap = "";
 		});
 	}
 

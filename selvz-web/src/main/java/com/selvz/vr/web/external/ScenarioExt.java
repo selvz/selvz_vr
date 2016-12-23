@@ -12,4 +12,6 @@ public class ScenarioExt {
 	public Long id;
 	public String address;
 	public String label;
+	public String border;
+	public Integer slides;
 }

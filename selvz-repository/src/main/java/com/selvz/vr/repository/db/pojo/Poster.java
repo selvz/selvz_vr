@@ -26,6 +26,7 @@ public class Poster implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Long id;
 	private String address;
+	private String bitmap;
 	private String label;
 	private User user;
 
@@ -52,6 +53,15 @@ public class Poster implements Serializable {
 		this.address = address;
 	}
 
+	@Column(name = "bitmap", nullable = true, unique = false, length = 255)
+	public String getBitmap() {
+		return bitmap;
+	}
+
+	public void setBitmap(String bitmap) {
+		this.bitmap = bitmap;
+	}
+
 	@Column(name = "label", nullable = true, unique = false, length = 32)
 	public String getLabel() {
 		return label;
@@ -60,7 +70,7 @@ public class Poster implements Serializable {
 	public void setLabel(String label) {
 		this.label = label;
 	}
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_user", nullable = true)
 	public User getUser() {

@@ -19,8 +19,9 @@ public class PosterWebMapper implements WebMapper<Poster, PosterExt>{
 	public PosterExt convertToExternal(Poster source) {
 		PosterExt posterExt = new PosterExt();
 		posterExt.id = source.getId();
-		posterExt.address = source.getAddress();
-		posterExt.label = source.getLabel();
+		posterExt.format = source.getLabel();
+		posterExt.bitmap = source.getBitmap();
+		posterExt.file = source.getAddress();
 		
 		return posterExt;
 	}
@@ -29,9 +30,10 @@ public class PosterWebMapper implements WebMapper<Poster, PosterExt>{
 	public Poster convertToEntity(PosterExt source) {
 		Poster poster = new Poster();
 		poster.setId(source.id);
-		poster.setAddress(source.address);
-		poster.setLabel(source.label);
-
+		poster.setAddress(source.file);
+		poster.setLabel(source.format);
+		poster.setBitmap(source.bitmap);
+		
 		return poster;
 	}
 
